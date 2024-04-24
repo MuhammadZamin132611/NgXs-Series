@@ -1,0 +1,126 @@
+<div class="container">
+    <div class="row">
+        <fieldset>
+            <legend>View Appointment</legend>
+            <table class="table">
+                <thead>
+                    <tr>
+
+                        <th scope="col">Sr.No</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Time</th>
+                        <th scope="col">Patient</th>
+                        <th scope="col">Doctor</th>
+                        <th scope="col">Reason</th>
+                        <th scope="col">Discription</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let e of Patients; let i=index">
+                        <th scope="row">{{i+1}}</th>
+                        <td>{{e.title}}</td>
+                        <td>{{e.date}}</td>
+                        <td>{{e.time}}</td>
+                        <td>{{e.patient}}</td>
+                        <td>{{e.doctor}}</td>
+                        <td>{{e.reason}}</td>
+                        <td>{{e.description}}</td>
+                        <td> <button class="btn but-edit btn-success" routerLink="/edit/{{e.id}}"
+                                (click)="editAppointment(e)">Edit</button> </td>
+                        <td><button class="btn btn-danger" (click)="DeleteData(e)">Delete</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </fieldset>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Address -->
+<!-- <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="FetchAddressData(e)">Address</button></td>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Patients Address</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form #formValue="ngForm">
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">City</label>
+                        <input disabled type="text" [(ngModel)]="DataModalObj.City" name="City" class="form-control"
+                            id="exampleInputEmail1" aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">State</label>
+                        <input disabled type="text" [(ngModel)]="DataModalObj.State" name="State" class="form-control"
+                            id="exampleInputEmail1" aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Country</label>
+                        <input disabled type="text" [(ngModel)]="DataModalObj.Country" name="Country"
+                            class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Zip Code</label>
+                        <input disabled type="text" [(ngModel)]="DataModalObj.Zip_Code" name="Zip_Code"
+                            class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Latitude</label>
+                        <input disabled type="text" [(ngModel)]="DataModalObj.Latitude" name="Latitude"
+                            class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Longitud</label>
+                        <input disabled type="text" [(ngModel)]="DataModalObj.Longitud" name="Longitud"
+                            class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div> -->

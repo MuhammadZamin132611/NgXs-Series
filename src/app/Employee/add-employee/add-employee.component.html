@@ -1,0 +1,89 @@
+<div class="container">
+    <div class="row">
+        <form [formGroup]="addForm" (ngSubmit)="Appointment()">
+            <fieldset>
+                <legend>Appointment</legend>
+                <div class="mb-3">
+                    <label for="disabledTextInput" class="form-label">Title</label>
+                    <input type="text" id="disabledTextInput" formControlName="title" class="form-control"
+                        placeholder="Enter title">
+
+                    <div class="text-danger" *ngIf="submitted && add['title'].errors"> This field is required !</div>
+
+                </div>
+                <div class="mb-3">
+                    <label for="disabledTextInput" class="form-label">Date</label>
+
+                    <input type="date" [max]="minDate" [min]="(date)" id="disabledTextInput" formControlName="date" class="form-control"
+                        >
+                    <div class="text-danger" *ngIf="submitted && add['date'].errors"> This field is required !</div>
+
+                </div>
+
+                <div class="mb-3">
+                    <label for="disabledTextInput" class="form-label">Time</label>
+                    <input type="time" id="disabledTextInput" formControlName="time" class="form-control"
+                        >
+                    <div class="text-danger" *ngIf="submitted && add['time'].errors"> This field is required !</div>
+
+                </div>
+
+
+                <div class="mb-3">
+                    <label for="disabledSelect" class="form-label">Patient</label>
+                    <select  class="form-select" formControlName="patient">
+                        <!-- <option *ngFor="let a of Patients" >{{a.title}} </option> -->
+                        <option>Jhon Deo</option>
+                        <option>Sameer</option>
+                        <option>Rahul Sharma</option>
+                        <option>Ravi Kumar</option>
+                        <option>Mayank Raj</option>
+                        <option>Kshitij Bansal</option>
+                        <option>Arjit</option>
+                    </select>
+                    <div class="text-danger" *ngIf="submitted && add['patient'].errors"> This field is required !</div>
+
+                </div>
+
+
+
+
+                <div class="mb-3">
+                    <label for="disabledSelect" class="form-label">Doctor</label>
+                    <select class="form-select" formControlName="doctor">
+                        <!-- <option *ngFor="let b of Patients" >{{b.title}} </option> -->
+                        <option>Dr. Jasmin </option>
+                        <option>Dr. Jhon Deo</option>
+                        <option>Dr. Sameer</option>
+                        <option>Dr. Rahul Sharma</option>
+                        <option>Dr. Ravi Kumar</option>
+                        <option>Dr. Mayank Raj</option>
+                        <option>Dr. Kshitij Bansal</option>
+                        <option>Dr. Arjit</option>
+                    </select>
+                    <div class="text-danger" *ngIf="submitted && add['doctor'].errors"> This field is required !</div>
+
+                </div>
+                <div class="mb-3">
+                    <label for="disabledTextInput" class="form-label">Reason</label>
+
+                    <textarea class="form-control" placeholder="Enter reason" id="floatingTextarea"
+                        formControlName="reason"></textarea>
+                    <div class="text-danger" *ngIf="submitted && add['reason'].errors"> This field is required !</div>
+
+                </div>
+                <div class="mb-3">
+                    <label for="disabledTextInput" class="form-label">Description</label>
+
+                    <textarea class="form-control" placeholder="Enter description" id="floatingTextarea"
+                        formControlName="description"></textarea>
+                    <div class="text-danger" *ngIf="submitted && add['description'].errors"> This field is required !
+                    </div>
+
+                </div>
+
+                <button (click)="onSubmit()" type="submit" class="btn btn-primary mb-3">Create</button>
+            </fieldset>
+        </form>
+    </div>
+</div>
