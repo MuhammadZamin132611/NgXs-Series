@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
 import { Action, Selector, State, StateContext } from "@ngxs/store";
-import { tap } from "rxjs";
+import { take, tap } from "rxjs";
 import { Employee } from "src/app/Employee/model/employee";
 import { EmployeeService } from "src/app/Employee/services/employee.service";
-import { GetEmployee, SetSelectedEmployee, AddEmployee } from "../action/employee.action";
+import { GetEmployee, SetSelectedEmployee, AddEmployee, DeleteEmployee } from "../action/employee.action";
 
 
 // State Model
@@ -49,12 +49,10 @@ export class EmployeeState {
 
     @Action(GetEmployee)
     getEmployees({ getState, setState }: StateContext<EmplyeeStateModel>) {
-        // console.log('State Action')
+
         return this.employee.getAppointment().pipe(
             tap(res => {
-                // console.log('Tap Responce',res)
                 const state = getState()
-                // console.log('State Responce',state)
                 setState({
                     ...state,
                     employees: res,
@@ -64,6 +62,7 @@ export class EmployeeState {
         )
     }
 
+    // Get Employee Details to state
     @Action(SetSelectedEmployee)
     setSelectedEployee({ getState, setState }: StateContext<EmplyeeStateModel>, { id }: SetSelectedEmployee) {
         // return this.employee
@@ -77,8 +76,8 @@ export class EmployeeState {
                 selectedEmployee: empList[index]
             })
             return;
-        }else{
-            return this.employee.getAppointmentWithID(id).pipe(tap((res:Employee[])=>{
+        } else {
+            return this.employee.getAppointmentWithID(id).pipe(tap((res: Employee[]) => {
 
                 const empList = [res];
                 setState({
@@ -90,14 +89,30 @@ export class EmployeeState {
         }
     }
 
+    // Add Employee Details to state
     @Action(AddEmployee)
-    addEmployee({getState, patchState}: StateContext<EmplyeeStateModel>,{payload}:AddEmployee){
-        return this.employee.addAppointment(payload).pipe(tap((res:Employee) =>{
+    addEmployee({ getState, patchState }: StateContext<EmplyeeStateModel>, { payload }: AddEmployee) {
+        return this.employee.addAppointment(payload).pipe(tap((res: Employee) => {
             const state = getState()
-
             patchState({
                 employees: [...state.employees, res]
             })
         }))
     }
+
+    // Delete data to State
+    @Action(DeleteEmployee)
+    deleteEmployee({ getState, setState }: StateContext<EmplyeeStateModel>, { id }: DeleteEmployee) {
+        return this.employee.deleteAppointment(id).pipe(tap(res=>{
+            const state = getState();
+            const filterdEmployee = state.employees.filter(emp => emp.id !== id)
+
+            setState({
+                ...state,
+                employees: filterdEmployee,
+                
+            })
+        }))
+    }
+
 }

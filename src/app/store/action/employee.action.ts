@@ -16,10 +16,10 @@ export class SetSelectedEmployee{
 }
 
 
-// export class DeleteEmployee {
-//     static readonly type = '[Employee] Delete';
-//     constructor(public id: any){}
-// }
+export class DeleteEmployee {
+    static readonly type = '[Employee] Delete';
+    constructor(public id: any){}
+}
 
 // export class UpdateEmployee {
 //     static readonly type = '[Employee] Update';

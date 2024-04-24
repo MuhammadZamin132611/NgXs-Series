@@ -4,7 +4,7 @@ import { EmployeeService } from '../services/employee.service';
 import { Observable, Subscription } from 'rxjs';
 import { Select, Store } from '@ngxs/store';
 import { EmployeeState } from 'src/app/store/states/employee.state';
-import { GetEmployee } from 'src/app/store/action/employee.action';
+import { DeleteEmployee, GetEmployee } from 'src/app/store/action/employee.action';
 
 @Component({
   selector: 'app-view-employee',
@@ -44,9 +44,11 @@ export class ViewEmployeeComponent {
  
 
   DeleteData(data: Employee) {
-    this.appointmentService.deleteAppointment(data.id).subscribe(res=>{
-      console.log(res)
-    });
-    window.location.reload();
+    // console.log(data.id)
+    this.store.dispatch(new DeleteEmployee(data.id))
+    // this.appointmentService.deleteAppointment(data.id).subscribe(res=>{
+    //   console.log(res)
+    // });
+    // window.location.reload();
   }
 }
