@@ -3,7 +3,7 @@ import { Action, Selector, State, StateContext } from "@ngxs/store";
 import { tap } from "rxjs";
 import { Employee } from "src/app/Employee/model/employee";
 import { EmployeeService } from "src/app/Employee/services/employee.service";
-import { GetEmployee, SetSelectedEmployee } from "../action/employee.action";
+import { GetEmployee, SetSelectedEmployee, AddEmployee } from "../action/employee.action";
 
 
 // State Model
@@ -69,13 +69,35 @@ export class EmployeeState {
         // return this.employee
         const state = getState();
         const empList = state.employees
-
         const index = empList.findIndex(emp => emp.id === id)
-        console.log("check id", empList[index]);
 
-        setState({
-            ...state,
-            selectedEmployee: empList[index]
-        })
+        if (empList.length > 0) {
+            setState({
+                ...state,
+                selectedEmployee: empList[index]
+            })
+            return;
+        }else{
+            return this.employee.getAppointmentWithID(id).pipe(tap((res:Employee[])=>{
+
+                const empList = [res];
+                setState({
+                    ...state,
+                    employees: res,
+                    selectedEmployee: res[0]
+                })
+            }))
+        }
+    }
+
+    @Action(AddEmployee)
+    addEmployee({getState, patchState}: StateContext<EmplyeeStateModel>,{payload}:AddEmployee){
+        return this.employee.addAppointment(payload).pipe(tap((res:Employee) =>{
+            const state = getState()
+
+            patchState({
+                employees: [...state.employees, res]
+            })
+        }))
     }
 }

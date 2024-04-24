@@ -3,6 +3,8 @@ import { Employee } from '../model/employee';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { EmployeeService } from '../services/employee.service';
 import { Router } from '@angular/router';
+import { Store } from '@ngxs/store';
+import { AddEmployee } from 'src/app/store/action/employee.action';
 
 @Component({
   selector: 'app-add-employee',
@@ -21,7 +23,7 @@ export class AddEmployeeComponent {
     description: new FormControl("", Validators.required)
   })
   Patients: Employee[] = [];
-  constructor(private empService: EmployeeService, private router: Router) {}
+  constructor(private empService: EmployeeService, private router: Router, private store:Store) {}
 
   data: any;
   date: Date | any;
@@ -52,6 +54,10 @@ export class AddEmployeeComponent {
 
   Appointment() {
     this.checkIfAppointmentIsSubmitted();
+
+    
+    
+    
     this.appointment.title = this.addForm.value.title;
     this.appointment.date = this.addForm.value.date;
     this.appointment.time = this.addForm.value.time;
@@ -59,19 +65,23 @@ export class AddEmployeeComponent {
     this.appointment.doctor = this.addForm.value.doctor;
     this.appointment.reason = this.addForm.value.reason;
     this.appointment.description = this.addForm.value.description;
+    
+    this.store.dispatch(new AddEmployee(this.appointment))
 
-
-    this.empService.addAppointment(this.appointment).subscribe();
+    // this.empService.addAppointment(this.appointment).subscribe();
   }
 
+  
   checkIfAppointmentIsSubmitted() {
 
     if (this.addForm.invalid) {
       this.submitted = false;
+      
     }
-
     this.submitted = true
+    this.data = this.addForm.value
   }
+  data101:any
 
   //This is the status variable that has to be set and returned to the caller
   isDateValid: Boolean = false;

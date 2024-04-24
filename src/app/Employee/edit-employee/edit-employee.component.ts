@@ -35,7 +35,7 @@ export class EditEmployeeComponent implements OnDestroy {
       this.storeEmploye = res;
       let id = res.id;
       this.Appointment(id);
-      console.log("edit",this.storeEmploye) 
+      // console.log("edit",this.storeEmploye) 
     })
   }
   employee:any
