@@ -13,35 +13,14 @@ import { GetEmployee } from 'src/app/store/action/employee.action';
 })
 export class ViewEmployeeComponent {
 
-  // Patients: Patients = new Patients();
-  Patients: any;
-
-  DataModalObj = {
-    PatientName: "",
-    Gender: "",
-    MobileNo: "",
-    IsRegistered: "",
-    RegisteredDate: "",
-    City: "",
-    State: "",
-    Country: "",
-    Zip_Code: "",
-    Latitude: "",
-    Longitud: "",
-  }
-
-  constructor(private appointmentService: EmployeeService, private store: Store) {
-  } 
-
-
-
   appointment: Employee | any = new Employee()
+  Patients: any;
+  constructor(private appointmentService: EmployeeService, private store: Store) {} 
 
   ngOnInit(): void {
-
     this.getAllAppointment();
     this.Patients$.subscribe(res => {
-      console.log("sdfgasdfg", res)
+      // console.log("sdfgasdfg", res)
       this.Patients = res;
     })
   }
@@ -56,28 +35,18 @@ export class ViewEmployeeComponent {
         this.store.dispatch(new GetEmployee())
       }
     })
-    // this.appointmentService.getAppointment().subscribe((appointment) => {
-    //   this.Patients = appointment;
-    // },
-    //   (error) => {
-    //     console.log(error);
-    //   })
   }
 
   ngOnDestroy(): void {
     this.empLoadedSub.unsubscribe()
   }
 
-
-
-  editAppointment(appointment: Employee) {
-    this.appointmentService.setAppointment(appointment)
-  }
-
+ 
 
   DeleteData(data: Employee) {
-    this.appointmentService.deleteAppointment(data.id).subscribe();
+    this.appointmentService.deleteAppointment(data.id).subscribe(res=>{
+      console.log(res)
+    });
     window.location.reload();
-    // console.log(data.id)
   }
 }

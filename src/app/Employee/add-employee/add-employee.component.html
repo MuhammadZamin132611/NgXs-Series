@@ -1,11 +1,11 @@
 <div class="container">
-    <div class="row">
+    <div class="row my-5">
         <form [formGroup]="addForm" (ngSubmit)="Appointment()">
             <fieldset>
                 <legend>Appointment</legend>
                 <div class="mb-3">
                     <label for="disabledTextInput" class="form-label">Title</label>
-                    <input type="text" id="disabledTextInput" formControlName="title" class="form-control"
+                    <input type="text" id="disabledTextInput" formControlName="title" class="form-control form-control-lg"
                         placeholder="Enter title">
 
                     <div class="text-danger" *ngIf="submitted && add['title'].errors"> This field is required !</div>
@@ -14,7 +14,7 @@
                 <div class="mb-3">
                     <label for="disabledTextInput" class="form-label">Date</label>
 
-                    <input type="date" [max]="minDate" [min]="(date)" id="disabledTextInput" formControlName="date" class="form-control"
+                    <input type="date" [max]="minDate" [min]="(date)" id="disabledTextInput" formControlName="date" class="form-control form-control-lg"
                         >
                     <div class="text-danger" *ngIf="submitted && add['date'].errors"> This field is required !</div>
 
@@ -22,7 +22,7 @@
 
                 <div class="mb-3">
                     <label for="disabledTextInput" class="form-label">Time</label>
-                    <input type="time" id="disabledTextInput" formControlName="time" class="form-control"
+                    <input type="time" id="disabledTextInput" formControlName="time" class="form-control form-control-lg"
                         >
                     <div class="text-danger" *ngIf="submitted && add['time'].errors"> This field is required !</div>
 
@@ -31,7 +31,7 @@
 
                 <div class="mb-3">
                     <label for="disabledSelect" class="form-label">Patient</label>
-                    <select  class="form-select" formControlName="patient">
+                    <select  class="form-select form-select-lg" formControlName="patient">
                         <!-- <option *ngFor="let a of Patients" >{{a.title}} </option> -->
                         <option>Jhon Deo</option>
                         <option>Sameer</option>
@@ -50,7 +50,7 @@
 
                 <div class="mb-3">
                     <label for="disabledSelect" class="form-label">Doctor</label>
-                    <select class="form-select" formControlName="doctor">
+                    <select class="form-select form-select-lg" formControlName="doctor">
                         <!-- <option *ngFor="let b of Patients" >{{b.title}} </option> -->
                         <option>Dr. Jasmin </option>
                         <option>Dr. Jhon Deo</option>
@@ -67,7 +67,7 @@
                 <div class="mb-3">
                     <label for="disabledTextInput" class="form-label">Reason</label>
 
-                    <textarea class="form-control" placeholder="Enter reason" id="floatingTextarea"
+                    <textarea class="form-control form-control-lg" placeholder="Enter reason" id="floatingTextarea"
                         formControlName="reason"></textarea>
                     <div class="text-danger" *ngIf="submitted && add['reason'].errors"> This field is required !</div>
 
@@ -75,14 +75,14 @@
                 <div class="mb-3">
                     <label for="disabledTextInput" class="form-label">Description</label>
 
-                    <textarea class="form-control" placeholder="Enter description" id="floatingTextarea"
+                    <textarea class="form-control form-control-lg" placeholder="Enter description" id="floatingTextarea"
                         formControlName="description"></textarea>
                     <div class="text-danger" *ngIf="submitted && add['description'].errors"> This field is required !
                     </div>
 
                 </div>
 
-                <button (click)="onSubmit()" type="submit" class="btn btn-primary mb-3">Create</button>
+                <button (click)="onSubmit()" type="submit" class="btn btn-primary btn-lg mb-3">Create</button>
             </fieldset>
         </form>
     </div>

@@ -1,11 +1,13 @@
 <div class="container">
     <div class="row">
         <fieldset>
-            <legend>View Appointment</legend>
-            <table class="table">
+            <div class="d-flex my-5">
+                <legend>View Employee</legend>
+                <button routerLink="" class="btn btn-success btn-lg text-nowrap">Add Employee</button>
+            </div>
+            <table class="table table-hover">
                 <thead>
                     <tr>
-
                         <th scope="col">Sr.No</th>
                         <th scope="col">Title</th>
                         <th scope="col">Date</th>
@@ -27,9 +29,11 @@
                         <td>{{e.doctor}}</td>
                         <td>{{e.reason}}</td>
                         <td>{{e.description}}</td>
-                        <td> <button class="btn but-edit btn-success" routerLink="/edit/{{e.id}}"
-                                (click)="editAppointment(e)">Edit</button> </td>
-                        <td><button class="btn btn-danger" (click)="DeleteData(e)">Delete</button></td>
+                        <!-- <td> <button class="btn but-edit btn-success" routerLink="/edit/{{e.id}}"
+                                (click)="editAppointment(e)">Edit</button> </td> -->
+                        <td> <button class="btn btn-lg btn-success" routerLink="/edit"
+                                [queryParams]="{id:e.id}">Edit</button> </td>
+                        <td><button class="btn btn-danger btn-lg" (click)="DeleteData(e)">Delete</button></td>
                     </tr>
                 </tbody>
             </table>

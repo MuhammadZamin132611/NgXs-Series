@@ -1,35 +1,29 @@
 <div class="container">
-    <div class="row">
-        <form [formGroup]="editForm" >
+    <div class="row my-5">
+        <form [formGroup]="editForm">
             <fieldset>
-                <legend>Edit Appointment</legend>
+                <div class="d-flex">
+                    <legend>Edit Appointment</legend>
+                    <button routerLink="/viewEmloyee" type="submit" class="btn btn-success btn-lg mb-3">BacK</button>
+            </div>
                 <div class="mb-3">
                     <label for="disabledTextInput" class="form-label">Title</label>
-                    <input type="text" id="disabledTextInput" [(ngModel)]="appointment.title" formControlName="title" class="form-control"
-                        placeholder="Enter title">
-
-
-
+                    <input type="text" readonly id="disabledTextInput" [(ngModel)]="employee.title" formControlName="title"
+                        class="form-control form-control-lg" placeholder="Enter title">
                 </div>
                 <div class="mb-3">
                     <label for="disabledTextInput" class="form-label">Date</label>
-
-                    <input type="date" id="disabledTextInput"  [(ngModel)]="appointment.date" formControlName="date" class="form-control">
-
-
+                    <input type="date" readonly id="disabledTextInput" [(ngModel)]="employee.date" formControlName="date"
+                        class="form-control form-control-lg">
                 </div>
-
                 <div class="mb-3">
                     <label for="disabledTextInput" class="form-label">Time</label>
-                    <input type="time" id="disabledTextInput" [(ngModel)]="appointment.time" formControlName="time" class="form-control">
-
-
+                    <input type="time" readonly id="disabledTextInput" [(ngModel)]="employee.time" formControlName="time"
+                        class="form-control form-control-lg">
                 </div>
-
-
                 <div class="mb-3">
                     <label for="disabledSelect" class="form-label">Patient</label>
-                    <select class="form-select" [(ngModel)]="appointment.patient" formControlName="patient">
+                    <select class="form-select form-select-lg" [(ngModel)]="employee.patient" formControlName="patient">
                         <option>Jasmin </option>
                         <option>Jhon Deo</option>
                         <option>Sameer</option>
@@ -39,16 +33,10 @@
                         <option>Kshitij Bansal</option>
                         <option>Arjit</option>
                     </select>
-
-
                 </div>
-
-
-
-
                 <div class="mb-3">
                     <label for="disabledSelect" class="form-label">Doctor</label>
-                    <select class="form-select" [(ngModel)]="appointment.doctor" formControlName="doctor">
+                    <select class="form-select form-select-lg" [(ngModel)]="employee.doctor" formControlName="doctor">
                         <option>Dr. Jasmin </option>
                         <option>Dr. Jhon Deo</option>
                         <option>Dr. Sameer</option>
@@ -62,21 +50,14 @@
                 </div>
                 <div class="mb-3">
                     <label for="disabledTextInput" class="form-label">Reason</label>
-
-                    <textarea class="form-control" placeholder="Enter reason" id="floatingTextarea"
-                    [(ngModel)]="appointment.reason" formControlName="reason"></textarea>
-
+                    <textarea class="form-control form-control-lg" readonly placeholder="Enter reason" id="floatingTextarea"
+                        [(ngModel)]="employee.reason" formControlName="reason"></textarea>
                 </div>
                 <div class="mb-3">
                     <label for="disabledTextInput" class="form-label">Description</label>
-
-                    <textarea class="form-control" placeholder="Enter description" id="floatingTextarea"
-                    [(ngModel)]="appointment.description" formControlName="description"></textarea>
-
-
+                    <textarea class="form-control form-control-lg" readonly placeholder="Enter description" id="floatingTextarea"
+                        [(ngModel)]="employee.description" formControlName="description"></textarea>
                 </div>
-
-                <button type="submit" (click)="Appointment()" class="btn btn-primary mb-3">Update</button>
             </fieldset>
         </form>
     </div>

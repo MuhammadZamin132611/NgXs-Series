@@ -12,23 +12,19 @@ export class EmployeeService {
   constructor(private http:HttpClient) { }
   
   getAppointment() {
-    return this.http.get<Employee[]>(this.url + `/employee`).pipe(map((response) => {
-      return response;
-    }))
+    return this.http.get<Employee[]>(this.url + `/employee`)
   }
 
   addAppointment(appointment: Employee): Observable<Employee> {
     return this.http.post<Employee>(this.url+`/employee`, appointment);
   }
 
-
-  temp!:Employee;
-  setAppointment(data:Employee){
-    this.temp = data;
+  getAppointmentWithID(id:string) {
+    return this.http.get<Employee[]>(this.url + `/employee/${id}`)
   }
-
-  editAppointment(appointment:Employee){
-    return this.http.put(this.url+`/employee/`+appointment.id,appointment);
+  
+  editAppointment(id:Employee){
+    return this.http.put(`http://localhost:3000/employee?id=${id.id}`,id);
   }
 
   deleteAppointment(id:Employee){
